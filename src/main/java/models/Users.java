@@ -7,13 +7,13 @@ public class Users {
     private String username;
     private String userPosition;
     private String userRole;
-    private String departmentName;
+    private int departmentId;
 
     public Users(String username, String userPosition, String userRole, String departmentName) {
         this.username = username;
         this.userPosition = userPosition;
         this.userRole = userRole;
-        this.departmentName = departmentName;
+        this.departmentId = departmentId;
     }
 
     public int getId() {
@@ -48,8 +48,12 @@ public class Users {
         this.userRole = userRole;
     }
 
-    public String getDepartmentName() {
-        return departmentName;
+    public int getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(int departmentId) {
+        this.departmentId = departmentId;
     }
 
     @Override
@@ -61,17 +65,14 @@ public class Users {
                 Objects.equals(getUsername(), users.getUsername()) &&
                 Objects.equals(getUserPosition(), users.getUserPosition()) &&
                 Objects.equals(getUserRole(), users.getUserRole()) &&
-                Objects.equals(getDepartmentName(), users.getDepartmentName());
+                Objects.equals(getDepartmentId(), users.getDepartmentId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getUsername(), getUserPosition(), getUserRole(), getDepartmentName());
+        return Objects.hash(getId(), getUsername(), getUserPosition(), getUserRole(), getDepartmentId());
     }
 
-    public void setDepartmentName(String departmentName) {
-        this.departmentName = departmentName;
-    }
 
 
 }
