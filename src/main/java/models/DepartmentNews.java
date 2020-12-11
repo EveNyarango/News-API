@@ -4,13 +4,13 @@ import java.util.Objects;
 
 public class DepartmentNews {
     private int id;
-    private String departmentName;
+    private int departmentId;
     private String title;
     private String news;
     private String author;
 
     public DepartmentNews(String departmentName, String title, String news, String author) {
-        this.departmentName = departmentName;
+        this.departmentId = departmentId;
         this.title = title;
         this.news = news;
         this.author = author;
@@ -24,12 +24,12 @@ public class DepartmentNews {
         this.id = id;
     }
 
-    public String getDepartmentName() {
-        return departmentName;
+    public int getDepartmentId() {
+        return departmentId;
     }
 
-    public void setDepartmentName(String departmentName) {
-        this.departmentName = departmentName;
+    public void setDepartmentId(int departmentId) {
+        this.departmentId = departmentId;
     }
 
     public String getTitle() {
@@ -62,7 +62,7 @@ public class DepartmentNews {
         if (!(o instanceof DepartmentNews)) return false;
         DepartmentNews that = (DepartmentNews) o;
         return getId() == that.getId() &&
-                Objects.equals(getDepartmentName(), that.getDepartmentName()) &&
+                Objects.equals(getDepartmentId(), that.getDepartmentId()) &&
                 Objects.equals(getTitle(), that.getTitle()) &&
                 Objects.equals(getNews(), that.getNews()) &&
                 Objects.equals(getAuthor(), that.getAuthor());
@@ -70,7 +70,7 @@ public class DepartmentNews {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getDepartmentName(), getTitle(), getNews(), getAuthor());
+        return Objects.hash(getId(), getDepartmentId(), getTitle(), getNews(), getAuthor());
     }
 }
 
