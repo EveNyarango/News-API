@@ -52,24 +52,26 @@ public class Users {
         return departmentName;
     }
 
-    public void setDepartmentName(String departmentName) {
-        this.departmentName = departmentName;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Users)) return false;
         Users users = (Users) o;
-        return id == users.id &&
-                username.equals(users.username) &&
-                userPosition.equals(users.userPosition) &&
-                userRole.equals(users.userRole) &&
-                departmentName.equals(users.departmentName);
+        return getId() == users.getId() &&
+                Objects.equals(getUsername(), users.getUsername()) &&
+                Objects.equals(getUserPosition(), users.getUserPosition()) &&
+                Objects.equals(getUserRole(), users.getUserRole()) &&
+                Objects.equals(getDepartmentName(), users.getDepartmentName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, userPosition, userRole, departmentName);
+        return Objects.hash(getId(), getUsername(), getUserPosition(), getUserRole(), getDepartmentName());
     }
+
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
+    }
+
+
 }
