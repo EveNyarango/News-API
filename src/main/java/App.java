@@ -3,7 +3,10 @@ import dao.Sql2oDepartmentNewsDao;
 import dao.Sql2oDepartmentsDao;
 import dao.Sql2oGeneralNewsDao;
 import dao.Sql2oUsersDao;
+import models.DepartmentNews;
 import models.Departments;
+import models.GeneralNews;
+import models.Users;
 import org.sql2o.Sql2o;
 import static spark.Spark.*;
 
@@ -37,10 +40,28 @@ DepartmentNewsDao = new Sql2oDepartmentNewsDao(sql2o);
         });
 
         post("/departments/:departmentId/departmentnews/new", "application/json", (req, res) -> {
-
+            int departmentId = Integer.parseInt(req.params("departmentsId"));
+            DepartmentNews departmentNews = gson.fromJson(req.body(), DepartmentNews.class);
+            departmentNews.setDepartmentId(departmentId);
+            DepartmentNewsDao.add(departmentNews);
+            res.status(201);
+            return gson.toJson(departmentNews);
 
         });
 
+        post("/generalNews/new", "application/json", (req, res) -> {
+            GeneralNews generalNews = gson.fromJson(req.body(), GeneralNews.class);
+            GeneralNewsDao.add(generalNews);
+            res.status(201);
+            return gson.toJson(generalNews);
+        });
+
+        post("/users/new", "application/json", (req, res) -> {
+            Users users = gson.fromJson(req.body(), Users.class);
+            UsersDao.add(users);
+            res.status(201);
+            return gson.toJson(users);
+        });
 
 
     }
