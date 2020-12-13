@@ -22,7 +22,9 @@ public class App {
         Connection conn;
         Gson gson = new Gson();
 
-        String connectionString = "jdbc:h2:~/NewsAPI.db;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
+//        String connectionString = "jdbc:h2:~/NewsAPI.db;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
+        String connectionString =  ("jdbc:postgresql://localhost:5432/departments");
+
         Sql2o sql2o = new Sql2o(connectionString, "moringa", "Nya2rango@");
 
 DepartmentsDao = new Sql2oDepartmentsDao(sql2o);
@@ -56,11 +58,24 @@ DepartmentNewsDao = new Sql2oDepartmentNewsDao(sql2o);
             return gson.toJson(generalNews);
         });
 
+
         post("/users/new", "application/json", (req, res) -> {
             Users users = gson.fromJson(req.body(), Users.class);
             UsersDao.add(users);
             res.status(201);
+            res.type("application/json");
             return gson.toJson(users);
+        });
+
+//        Read
+        get("/users", "application/json", (req, res) -> { //accept a request in format JSON from an app
+            res.type("application/json");
+            return gson.toJson(UsersDao.getAllUser());//send it back to be displayed
+        });
+
+        get("/departments", "application/json", (req, res) -> { //accept a request in format JSON from an app
+            res.type("application/json");
+            return gson.toJson(DepartmentsDao.getAllDepartments());//send it back to be displayed
         });
 
 
