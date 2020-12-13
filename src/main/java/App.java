@@ -78,6 +78,17 @@ DepartmentNewsDao = new Sql2oDepartmentNewsDao(sql2o);
             return gson.toJson(DepartmentsDao.getAllDepartments());//send it back to be displayed
         });
 
+        get("/departmentNews", "application/json", (req, res) -> { //accept a request in format JSON from an app
+            res.type("application/json");
+            return gson.toJson(DepartmentNewsDao.getAllDepartmentNews());//send it back to be displayed
+        });
+
+        get("/generalNews", "application/json", (req, res) -> { //accept a request in format JSON from an app
+            res.type("application/json");
+            return gson.toJson(GeneralNewsDao.getAllGeneralNews());//send it back to be displayed
+        });
+
+
 
     }
 }

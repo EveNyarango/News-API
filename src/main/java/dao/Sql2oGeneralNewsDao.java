@@ -30,6 +30,7 @@ public Sql2oGeneralNewsDao(Sql2o sql2o){
     @Override
     public List<GeneralNews> getAllGeneralNews() {
         String sql = "SELECT * FROM news WHERE departmentId IS NULL";
+//        String sql = "SELECT * FROM news";
         try(Connection con = sql2o.open()){
             return con.createQuery(sql)
                     .throwOnMappingFailure(false)
