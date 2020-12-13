@@ -3,22 +3,43 @@ import dao.Sql2oDepartmentNewsDao;
 import dao.Sql2oDepartmentsDao;
 import dao.Sql2oGeneralNewsDao;
 import dao.Sql2oUsersDao;
+import models.Departments;
 import org.sql2o.Sql2o;
+import static spark.Spark.*;
 
-import java.sql.Connection;
+import org.sql2o.Connection;
 
 public class App {
 
     public static void main (String[] args) {
-        Sql2oDepartmentsDao departmentsDao;
-        Sql2oDepartmentNewsDao departmentNewsDao;
-        Sql2oGeneralNewsDao generalNewsDao;
-        Sql2oUsersDao usersDao;
+        Sql2oDepartmentsDao     DepartmentsDao;
+        Sql2oDepartmentNewsDao DepartmentNewsDao;
+        Sql2oGeneralNewsDao GeneralNewsDao;
+        Sql2oUsersDao UsersDao;
         Connection conn;
         Gson gson = new Gson();
 
         String connectionString = "jdbc:h2:~/NewsAPI.db;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
         Sql2o sql2o = new Sql2o(connectionString, "moringa", "Nya2rango@");
+
+DepartmentsDao = new Sql2oDepartmentsDao(sql2o);
+DepartmentNewsDao = new Sql2oDepartmentNewsDao(sql2o);
+ GeneralNewsDao = new Sql2oGeneralNewsDao(sql2o);
+ UsersDao = new Sql2oUsersDao(sql2o);
+        conn = sql2o.open();
+
+//        CREATE
+        post("/departments/new", "application/json", (req, res) -> {
+            Departments departments = gson.fromJson(req.body(), Departments.class);
+            DepartmentsDao.add(departments);
+            res.status(201);
+            return gson.toJson(departments);
+        });
+
+        post("/departments/:departmentId/departmentnews/new", "application/json", (req, res) -> {
+
+
+        });
 
 
 
