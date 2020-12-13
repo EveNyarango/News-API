@@ -3,6 +3,7 @@ import dao.Sql2oDepartmentNewsDao;
 import dao.Sql2oDepartmentsDao;
 import dao.Sql2oGeneralNewsDao;
 import dao.Sql2oUsersDao;
+import exceptions.ApiException;
 import models.DepartmentNews;
 import models.Departments;
 import models.GeneralNews;
@@ -89,6 +90,26 @@ DepartmentNewsDao = new Sql2oDepartmentNewsDao(sql2o);
         });
 
 
+//        find
 
+
+        get("/users/:id", "application/json", (req, res) -> { //accept a request in format JSON from an app
+            int usersId = Integer.parseInt(req.params("id"));
+            Users usersToFind = UsersDao.getUserById(usersId);
+
+            if(usersToFind == null) {
+                throw new ApiException(404, String.format("No user with the id: \"%s\" exists", req.params("id")));
+            }
+            return gson.toJson(usersToFind);
+        });
+        get("/departments/:id", "application/json", (req, res) -> { //accept a request in format JSON from an app
+            int departmentId = Integer.parseInt(req.params("id"));
+            Departments departmentToFind = (Departments) DepartmentsDao.getAllDepartments(departmentId);
+
+            if (departmentToFind == null){
+                throw new ApiException(404, String.format("No department with the id: \"%s\" exists", req.params("id")));
+            }
+            return gson.toJson(departmentToFind);
+        });
     }
 }
