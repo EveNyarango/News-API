@@ -13,6 +13,9 @@ import static spark.Spark.*;
 
 import org.sql2o.Connection;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class App {
 
     public static void main (String[] args) {
@@ -135,6 +138,22 @@ DepartmentNewsDao = new Sql2oDepartmentNewsDao(sql2o);
                 throw new ApiException(404, String.format("No general news with the id: \"%s\" exists", req.params("id")));
             }
             return gson.toJson(generalNewsToFind );
+        });
+
+
+        //FILTERS
+        exception(ApiException.class, (exception, req, res) -> {
+            ApiException err = (ApiException) exception;
+            Map<String, Object> jsonMap = new HashMap<>();
+            jsonMap.put("status", err.getStatusCode());
+            jsonMap.put("errorMessage", err.getMessage());
+            res.type("application/json");
+            res.status(err.getStatusCode());
+            res.body(gson.toJson(jsonMap));
+        });
+
+        after((req, res) -> {
+            res.type("application/json");
         });
     }
 }

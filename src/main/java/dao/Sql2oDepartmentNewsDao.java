@@ -2,7 +2,7 @@ package dao;
 
 import models.DepartmentNews;
 import org.sql2o.Sql2o;
-
+import static spark.Spark.*;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import org.sql2o.Sql2oException;
@@ -55,6 +55,8 @@ public class Sql2oDepartmentNewsDao implements DepartmentNewsDao {
             System.out.println(ex);
             return null;
         }
+
+
     }
 
 }
