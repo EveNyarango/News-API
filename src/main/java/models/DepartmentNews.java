@@ -9,8 +9,8 @@ public class DepartmentNews {
     private String news;
     private String author;
 
-    public DepartmentNews(String departmentName, String title, String news, String author) {
-        this.departmentId = departmentId;
+    public DepartmentNews(int departmentId, String title, String news, String author) {
+//        this.departmentId = departmentId;
         this.title = title;
         this.news = news;
         this.author = author;
