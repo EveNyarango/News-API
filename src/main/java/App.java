@@ -114,7 +114,7 @@ DepartmentNewsDao = new Sql2oDepartmentNewsDao(sql2o);
             return gson.toJson(departmentsToFind );
         });
 
-        get("/departmentNews/:id", "application/json", (req, res) -> { //accept a request in format JSON from an app
+        get("/departmentNews/:departmentId", "application/json", (req, res) -> { //accept a request in format JSON from an app
             int deparmentNewsId = Integer.parseInt(req.params("id"));
             DepartmentNews departmentsNewsToFind = DepartmentNewsDao.getDepartmentNewsById(deparmentNewsId );
             if (departmentsNewsToFind== null){

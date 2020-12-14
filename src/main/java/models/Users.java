@@ -13,7 +13,7 @@ public class Users {
         this.username = username;
         this.userPosition = userPosition;
         this.userRole = userRole;
-//        this.departmentId = departmentId;
+        this.departmentId = departmentId;
     }
 
     public int getId() {
