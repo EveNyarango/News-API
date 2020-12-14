@@ -46,10 +46,12 @@ public class Departments {
     }
 
     public void setNoOfEmployees(int noOfEmployees) {
+
         this.noOfEmployees = noOfEmployees;
     }
 
     public List<Users> getDepartmentUsers() {
+
         return departmentUsers;
     }
 

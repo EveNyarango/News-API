@@ -17,10 +17,12 @@ public class Users {
     }
 
     public int getId() {
+
         return id;
     }
 
     public void setId(int id) {
+
         this.id = id;
     }
 
@@ -37,6 +39,7 @@ public class Users {
     }
 
     public void setUserPosition(String userPosition) {
+
         this.userPosition = userPosition;
     }
 
