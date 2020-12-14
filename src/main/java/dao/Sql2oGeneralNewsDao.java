@@ -20,6 +20,9 @@ public Sql2oGeneralNewsDao(Sql2o sql2o){
             int id = (int) con.createQuery(sql, true)
                     .throwOnMappingFailure(false)
                     .bind(generalNews)
+                    .addParameter("title", generalNews.getTitle())
+                    .addParameter("news", generalNews.getNews())
+                    .addParameter("author", generalNews.getAuthor())
                     .executeUpdate()
                     .getKey();
             generalNews.setId(id);

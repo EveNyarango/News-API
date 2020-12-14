@@ -22,6 +22,9 @@ public class Sql2oDepartmentNewsDao implements DepartmentNewsDao {
             int id = (int) con.createQuery(sql)
                     .throwOnMappingFailure(false)
                     .bind(departmentNews)
+                    .addParameter("title", departmentNews.getTitle())
+                    .addParameter("news", departmentNews.getAuthor())
+                    .addParameter("departmentId", departmentNews.getDepartmentId())
                     .executeUpdate()
                     .getKey();
             departmentNews.setId(id);
