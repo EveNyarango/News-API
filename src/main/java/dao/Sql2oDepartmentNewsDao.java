@@ -32,7 +32,7 @@ public class Sql2oDepartmentNewsDao implements DepartmentNewsDao {
 
     @Override
     public List<DepartmentNews> getAllDepartmentNews() {
-        String sql = "SELECT * FROM news WHERE departmentId <> ''";
+        String sql = "SELECT * FROM news";
         try (Connection con = sql2o.open()){
             return con.createQuery(sql, true)
                     .throwOnMappingFailure(false)
@@ -45,7 +45,7 @@ public class Sql2oDepartmentNewsDao implements DepartmentNewsDao {
 
     @Override
     public DepartmentNews getDepartmentNewsById(int id) {
-        String sql = "SELECT * FROM news WHERE departmentId <> ''";
+        String sql = "SELECT * FROM news WHERE id=:id";
         try (Connection conn = sql2o.open()){
             return   conn.createQuery(sql)
                     .throwOnMappingFailure(false)

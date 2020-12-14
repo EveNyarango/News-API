@@ -13,8 +13,8 @@ void add(Departments department);
 
 //Read
 List<Departments> getAllDepartments();
-List<DepartmentNews>getDepartmentNewsById( int id);
-List<Users> getDepartmentUserById (int id);
+//List<DepartmentNews>getDepartmentNewsById( int id);
+//List<Users> getDepartmentUserById (int id);
 Departments getDepartmentsById(int id);
 
 }
