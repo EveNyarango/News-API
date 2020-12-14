@@ -1,6 +1,7 @@
 package dao;
 
 import models.DepartmentNews;
+import models.GeneralNews;
 import org.sql2o.Sql2o;
 import static spark.Spark.*;
 import org.sql2o.Connection;
@@ -15,22 +16,24 @@ public class Sql2oDepartmentNewsDao implements DepartmentNewsDao {
         this.sql2o = sql2o;
     }
 
+
     @Override
     public void add(DepartmentNews departmentNews) {
+        String sql = "INSERT INTO news (departmentId, title, news, author) VALUES (:departmentId, :title, :news, :author)";
         try (Connection con = sql2o.open()){
-            String sql = "INSERT INTO news (title, news, author, departmentId) VALUES (:title, :news, :author, :departmentId)";
-            int id = (int) con.createQuery(sql)
+            int id = (int) con.createQuery(sql, true)
                     .throwOnMappingFailure(false)
-                    .bind(departmentNews)
-                    .addParameter("title", departmentNews.getTitle())
-                    .addParameter("news", departmentNews.getAuthor())
+//                    .bind(departmentNews)
                     .addParameter("departmentId", departmentNews.getDepartmentId())
+                    .addParameter("title", departmentNews.getTitle())
+                    .addParameter("news", departmentNews.getNews())
+                    .addParameter("author", departmentNews.getAuthor())
                     .executeUpdate()
                     .getKey();
             departmentNews.setId(id);
-
+        }catch (Sql2oException ex) {
+            System.out.println(ex);
         }
-
     }
 
     @Override

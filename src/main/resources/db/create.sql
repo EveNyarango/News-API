@@ -15,9 +15,11 @@ departmentId INT
 );
 CREATE TABLE news(
 id SERIAL PRIMARY KEY,
+departmentId INT,
 title VARCHAR,
 news VARCHAR,
-author VARCHAR,
-departmentId INT
+author VARCHAR
 );
+
+ CREATE DATABASE departments_test WITH TEMPLATE departments;
 

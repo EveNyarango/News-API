@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface DepartmentNewsDao {
 //    Create
-    void add (DepartmentNews departmentNews);
+ void add(DepartmentNews departmentNews);
 
 //    Read
     List<DepartmentNews> getAllDepartmentNews();

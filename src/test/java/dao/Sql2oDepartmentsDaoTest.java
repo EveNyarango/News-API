@@ -1,4 +1,5 @@
 package dao;
+
 import models.Departments;
 import models.Users;
 import org.junit.After;
@@ -9,13 +10,13 @@ import org.sql2o.Sql2o;
 
 import static org.junit.Assert.*;
 
-public class Sql2oUsersDaoTest {
+public class Sql2oDepartmentsDaoTest {
 
     private Connection conn;
     private Sql2oUsersDao UsersDao;
     private Sql2oDepartmentsDao DepartmentsDao;
 
-    private static  Sql2o sql2o;
+    private static Sql2o sql2o;
 
     @Before
     public void setUp() throws Exception {
@@ -24,7 +25,6 @@ public class Sql2oUsersDaoTest {
         UsersDao = new Sql2oUsersDao(sql2o);
         DepartmentsDao = new Sql2oDepartmentsDao(sql2o);
         conn = sql2o.open();
-
     }
 
     @After
@@ -32,24 +32,16 @@ public class Sql2oUsersDaoTest {
     }
 
     @Test
-    public void addingUserSetsId() throws Exception {
-        Users testUsers = setupNewUser();
-        int originalUsersId = testUsers.getId();
-        UsersDao.add(testUsers);
-        assertNotEquals(originalUsersId,testUsers.getId());
+    public void addingDepartmentsSetsId() throws Exception {
+        Departments testDepartments = setupNewDepartments();
+        int originalDepartmentsId = testDepartments.getId();
+        DepartmentsDao.add(testDepartments);
+        assertNotEquals(originalDepartmentsId,testDepartments.getId());
     }
 
-//    @Test
-//    public void addedUsersAreReturnedFromGetAllUser() throws Exception {
-//        Users testUsers = setupNewUser();
-//        UsersDao.add(testUsers);
-//        assertEquals(3, UsersDao.getAllUser().size());
-//    }
-
-//helper
-    public Users setupNewUser(){
-        return new Users("Cate", "Software Developer", "Programming", 0);
+    //helper
+    public Departments setupNewDepartments(){
+        return new Departments ("Finance", "Accounts", 30);
     }
-
 
 }

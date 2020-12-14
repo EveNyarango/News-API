@@ -10,13 +10,14 @@ public class DepartmentNews {
     private String author;
 
     public DepartmentNews(int departmentId, String title, String news, String author) {
-//        this.departmentId = departmentId;
+        this.departmentId = departmentId;
         this.title = title;
         this.news = news;
         this.author = author;
     }
 
     public int getId() {
+
         return id;
     }
 

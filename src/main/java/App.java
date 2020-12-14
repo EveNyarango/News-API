@@ -46,7 +46,7 @@ DepartmentNewsDao = new Sql2oDepartmentNewsDao(sql2o);
             return gson.toJson(departments);
         });
 
-        post("/departmentnews/new", "application/json", (req, res) -> {
+        post("/departmentNews/new", "application/json", (req, res) -> {
             DepartmentNews departmentNews = gson.fromJson(req.body(), DepartmentNews.class);
             DepartmentNewsDao.add(departmentNews);
             res.status(201);
@@ -71,22 +71,22 @@ DepartmentNewsDao = new Sql2oDepartmentNewsDao(sql2o);
         });
 
 //        Read
-        get("/users", "application/json", (req, res) -> { //accept a request in format JSON from an app
+        get("/users", "application/json", (req, res) -> {
             res.type("application/json");
             return gson.toJson(UsersDao.getAllUser());//send it back to be displayed
         });
 
-        get("/departments", "application/json", (req, res) -> { //accept a request in format JSON from an app
+        get("/departments", "application/json", (req, res) -> {
             res.type("application/json");
             return gson.toJson(DepartmentsDao.getAllDepartments());//send it back to be displayed
         });
 
-        get("/departmentNews", "application/json", (req, res) -> { //accept a request in format JSON from an app
+        get("/departmentNews", "application/json", (req, res) -> {
             res.type("application/json");
             return gson.toJson(DepartmentNewsDao.getAllDepartmentNews());//send it back to be displayed
         });
 
-        get("/generalNews", "application/json", (req, res) -> { //accept a request in format JSON from an app
+        get("/generalNews", "application/json", (req, res) -> {
             res.type("application/json");
             return gson.toJson(GeneralNewsDao.getAllGeneralNews());//send it back to be displayed
         });
@@ -95,7 +95,7 @@ DepartmentNewsDao = new Sql2oDepartmentNewsDao(sql2o);
 //        find
 
 
-        get("/users/:id", "application/json", (req, res) -> { //accept a request in format JSON from an app
+        get("/users/:id", "application/json", (req, res) -> {
             int usersId = Integer.parseInt(req.params("id"));
             Users usersToFind = UsersDao.getUserById(usersId);
 
@@ -114,14 +114,14 @@ DepartmentNewsDao = new Sql2oDepartmentNewsDao(sql2o);
             return gson.toJson(departmentsToFind );
         });
 
-        get("/departmentNews/:departmentId", "application/json", (req, res) -> { //accept a request in format JSON from an app
-            int deparmentNewsId = Integer.parseInt(req.params("id"));
-            DepartmentNews departmentsNewsToFind = DepartmentNewsDao.getDepartmentNewsById(deparmentNewsId );
-            if (departmentsNewsToFind== null){
-                throw new ApiException(404, String.format("No department news with the id: \"%s\" exists", req.params("id")));
-            }
-            return gson.toJson(departmentsNewsToFind );
-        });
+//        get("/departmentNews/:departmentId", "application/json", (req, res) -> { //accept a request in format JSON from an app
+//            int deparmentNewsId = Integer.parseInt(req.params("id"));
+//            DepartmentNews departmentsNewsToFind = DepartmentNewsDao.getDepartmentNewsById(deparmentNewsId );
+//            if (departmentsNewsToFind== null){
+//                throw new ApiException(404, String.format("No department news with the id: \"%s\" exists", req.params("id")));
+//            }
+//            return gson.toJson(departmentsNewsToFind );
+//        });
 
         get("/departmentNews/:id", "application/json", (req, res) -> { //accept a request in format JSON from an app
             int deparmentNewsId = Integer.parseInt(req.params("id"));
@@ -140,21 +140,7 @@ DepartmentNewsDao = new Sql2oDepartmentNewsDao(sql2o);
             }
             return gson.toJson(generalNewsToFind );
         });
-//
-//        get("/departments/:departmentId/departmentnews", "application/json", (req, res) -> {
-//            int departmentId = Integer.parseInt(req.params("departmentId"));
-//            Departments departmentToFind = DepartmentsDao.getDepartmentsById(departmentId);
-//            List<DepartmentNews> allNews;
-//
-//            if (departmentToFind == null){
-//                throw new ApiException(404, String.format("No department with the id: \"%s\" exists", req.params("id")));
-//            }
-//
-//            allNews = DepartmentNewsDao.getAllDepartmentNews(departmentId);
-//
-//            return gson.toJson(allNews);
-//
-//        });
+
 
 
         //FILTERS
