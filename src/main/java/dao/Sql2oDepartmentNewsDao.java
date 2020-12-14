@@ -45,7 +45,7 @@ public class Sql2oDepartmentNewsDao implements DepartmentNewsDao {
 
     @Override
     public DepartmentNews getDepartmentNewsById(int id) {
-        String sql = "SELECT * FROM news WHERE id=:id";
+        String sql = "SELECT * FROM news WHERE deparmentId=:id";
         try (Connection conn = sql2o.open()){
             return   conn.createQuery(sql)
                     .throwOnMappingFailure(false)
@@ -55,6 +55,7 @@ public class Sql2oDepartmentNewsDao implements DepartmentNewsDao {
             System.out.println(ex);
             return null;
         }
+
 
 
     }

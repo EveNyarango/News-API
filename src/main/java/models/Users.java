@@ -9,11 +9,11 @@ public class Users {
     private String userRole;
     private int departmentId;
 
-    public Users(String username, String userPosition, String userRole, String departmentName) {
+    public Users(String username, String userPosition, String userRole, int departmentId) {
         this.username = username;
         this.userPosition = userPosition;
         this.userRole = userRole;
-        this.departmentId = departmentId;
+//        this.departmentId = departmentId;
     }
 
     public int getId() {

@@ -14,6 +14,7 @@ import static spark.Spark.*;
 import org.sql2o.Connection;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class App {
@@ -139,6 +140,21 @@ DepartmentNewsDao = new Sql2oDepartmentNewsDao(sql2o);
             }
             return gson.toJson(generalNewsToFind );
         });
+//
+//        get("/departments/:departmentId/departmentnews", "application/json", (req, res) -> {
+//            int departmentId = Integer.parseInt(req.params("departmentId"));
+//            Departments departmentToFind = DepartmentsDao.getDepartmentsById(departmentId);
+//            List<DepartmentNews> allNews;
+//
+//            if (departmentToFind == null){
+//                throw new ApiException(404, String.format("No department with the id: \"%s\" exists", req.params("id")));
+//            }
+//
+//            allNews = DepartmentNewsDao.getAllDepartmentNews(departmentId);
+//
+//            return gson.toJson(allNews);
+//
+//        });
 
 
         //FILTERS

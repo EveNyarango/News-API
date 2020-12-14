@@ -41,31 +41,31 @@ System.out.println(ex);
         }
     }
 
-//    @Override
-//    public List<DepartmentNews> getDepartmentNewsById(int id) {
-//        String sql = "SELECT * FROM news WHERE departmentId= :id";
-//        try (Connection con = sql2o.open()) {
-//            return con.createQuery(sql)
-//                    .addParameter("id", id)
-//                    .executeAndFetch(DepartmentNews.class);
-//        } catch (Sql2oException ex) {
-//            System.out.println(ex);
-//            return null;
-//        }
-//    }
+    @Override
+    public List<DepartmentNews> getDepartmentNewsById(int id) {
+        String sql = "SELECT * FROM news WHERE departmentId= :id";
+        try (Connection con = sql2o.open()) {
+            return con.createQuery(sql)
+                    .addParameter("id", id)
+                    .executeAndFetch(DepartmentNews.class);
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
+            return null;
+        }
+    }
 
-//    @Override
-//    public List<Users> getDepartmentUserById(int id) {
-//        String sql = "SELECT * FROM users WHERE departmentId= :id";
-//        try (Connection con = sql2o.open()){
-//            return con.createQuery(sql)
-//                    .addParameter("id", id)
-//                    .executeAndFetch(Users.class);
-//        }catch (Sql2oException ex) {
-//            System.out.println(ex);
-//            return null;
-//        }
-//    }
+    @Override
+    public List<Users> getDepartmentUserById(int id) {
+        String sql = "SELECT * FROM users WHERE departmentId= :id";
+        try (Connection con = sql2o.open()){
+            return con.createQuery(sql)
+                    .addParameter("id", id)
+                    .executeAndFetch(Users.class);
+        }catch (Sql2oException ex) {
+            System.out.println(ex);
+            return null;
+        }
+    }
 
     @Override
     public Departments getDepartmentsById(int id) {
