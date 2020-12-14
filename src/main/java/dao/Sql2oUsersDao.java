@@ -22,6 +22,10 @@ try (Connection con = sql2o.open()){
     int id = (int) con.createQuery(sql, true)
             .throwOnMappingFailure(false)
             .bind(users)
+            .addParameter("username", users.getUsername())
+            .addParameter("userposition", users.getUserPosition())
+            .addParameter("userrole", users.getUserRole())
+            .addParameter("departmentId", users.getDepartmentId())
             .executeUpdate()
             .getKey();
     users.setId(id);

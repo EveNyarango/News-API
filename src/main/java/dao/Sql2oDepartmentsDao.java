@@ -22,7 +22,7 @@ public class Sql2oDepartmentsDao implements DepartmentsDao{
         String sql ="INSERT INTO departments (departmentname, departmentdescription, noofemployees) VALUES (:departmentname, :departmentdescription, :noofemployees )";
         try (Connection con = sql2o.open()){
             int id = (int) con.createQuery(sql, true)
-//                    .bind(departments)
+                    .bind(departments)
                     .addParameter("departmentname", departments.getDepartmentName())
                     .addParameter("departmentdescription",departments.getDepartmentDescription())
                     .addParameter("noofemployees", departments.getNoOfEmployees())
