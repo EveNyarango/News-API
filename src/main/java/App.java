@@ -38,6 +38,10 @@ DepartmentNewsDao = new Sql2oDepartmentNewsDao(sql2o);
  UsersDao = new Sql2oUsersDao(sql2o);
         conn = sql2o.open();
 
+//        Homepage
+        get("/", "application/json", (req, res) ->
+                "{\"message\":\"Welcome to the organisation news application.\"}");
+
 //        CREATE
         post("/departments/new", "application/json", (req, res) -> {
             Departments departments = gson.fromJson(req.body(), Departments.class);
